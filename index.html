@@ -41,7 +41,7 @@ const $elem = document.querySelectorAll('.element');
 $elem.forEach(element => {
 	element.onclick = function () {
 	MIDI.loadPlugin({
-		soundfontUrl: "/js/soundfont/",
+		soundfontUrl: "./js/soundfont/",
 		instrument: "acoustic_grand_piano",
 		onprogress: function(state, progress) {
 			console.log(state, progress);
