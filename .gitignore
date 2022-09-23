@@ -1,0 +1,10 @@
+/midi-js-soundfonts
+
+# NODE/NPM
+node_modules*
+npm-debug.log
+
+# FORMATS
+*.gz
+*.DS_Store
+

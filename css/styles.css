@@ -1,0 +1,24 @@
+body {
+	font-family: Arial, sans-serif;
+	font-size: 50px;
+}
+
+.element {
+	color: black;
+	padding: .5em;
+	text-align: center;
+	background-color: #efefef;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+	height: 25vh;
+}
+
+
+/* Our Grid Code */
+.app-layout {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}

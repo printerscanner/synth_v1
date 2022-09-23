@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<!-- polyfill -->
+	<script src="js/inc/shim/Base64.js" type="text/javascript"></script>
+	<script src="js/inc/shim/Base64binary.js" type="text/javascript"></script>
+	<script src="js/inc/shim/WebAudioAPI.js" type="text/javascript"></script>
+	<!-- midi.js package -->
+	<script src="js/midi/audioDetect.js" type="text/javascript"></script>
+	<script src="js/midi/gm.js" type="text/javascript"></script>
+	<script src="js/midi/loader.js" type="text/javascript"></script>
+	<script src="js/midi/plugin.audiotag.js" type="text/javascript"></script>
+	<script src="js/midi/plugin.webaudio.js" type="text/javascript"></script>
+	<script src="js/midi/plugin.webmidi.js" type="text/javascript"></script>
+	<!-- utils -->
+	<script src="js/util/dom_request_xhr.js" type="text/javascript"></script>
+	<script src="js/util/dom_request_script.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+<div class="app-layout">
+	<div class="element" data-note="40">E</div>
+	<div class="element" data-note="41">F</div>
+	<div class="element" data-note="42">F#</div>
+	<div class="element" data-note="43">G</div>
+	<div class="element" data-note="44">G#</div>
+	<div class="element" data-note="45">A</div>
+	<div class="element" data-note="46">A#</div>
+	<div class="element" data-note="47">B</div>
+	<div class="element" data-note="48">C</div>
+	<div class="element" data-note="49">C#</div>
+	<div class="element" data-note="50">D</div>
+	<div class="element" data-note="51">D#</div>
+</div>
+
+<script type="text/javascript">
+
+const $elem = document.querySelectorAll('.element');
+
+$elem.forEach(element => {
+	element.onclick = function () {
+	MIDI.loadPlugin({
+		soundfontUrl: "/js/soundfont/",
+		instrument: "acoustic_grand_piano",
+		onprogress: function(state, progress) {
+			console.log(state, progress);
+		},
+		onsuccess: function() {
+			var note = element.getAttribute('data-note'); // the MIDI note
+			var velocity = 127; // how hard the note hits
+			// play the note
+			MIDI.setVolume(0, 127);
+			MIDI.noteOn(0, note, velocity);
+			MIDI.noteOff(0, note);
+		}
+	});
+};
+
+});
+
+
+
+</script>
+</body>
+</html>
